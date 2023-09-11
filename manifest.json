@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "AWS Account Name Replacer",
+    "version": "1.0",
+    "description": "Replaces the AWS account id with a custom name.",
+    "permissions": ["storage", "activeTab", "https://*.aws.amazon.com/*"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        },
+        "default_width": 300,
+        "default_height": 500
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*.aws.amazon.com/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
