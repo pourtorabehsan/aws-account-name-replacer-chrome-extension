@@ -14,23 +14,16 @@ chrome.storage.sync.get(["mappings"], function (result) {
     const listItem = document.createElement("li");
     listItem.className = "list-group-item d-flex align-items-center";
 
-    const circleSpan = document.createElement("span");
-    circleSpan.style.display = "inline-block";
-    circleSpan.style.width = "10px"; // or the desired diameter of the circle
-    circleSpan.style.height = "10px";
-    circleSpan.style.borderRadius = "50%"; // this makes it a circle
-    circleSpan.style.backgroundColor = mapping.color;
-    listItem.appendChild(circleSpan);
-
     const mappingText = document.createElement("span");
     mappingText.style.marginLeft = "8px";
     mappingText.className = "flex-grow-1";
     mappingText.textContent = `${mapping.accountId} -> ${mapping.accountName}`;
+    mappingText.style.color = mapping.color;
     listItem.appendChild(mappingText);
 
     const removeButton = document.createElement("button");
     removeButton.title = "Remove";
-    removeButton.className = "close text-danger";
+    removeButton.className = "close";
     removeButton.innerHTML = "&times;";
     removeButton.addEventListener("click", function () {
       // Remove this mapping from storage
@@ -72,23 +65,16 @@ document.getElementById("mappingForm").addEventListener("submit", function (e) {
         const listItem = document.createElement("li");
         listItem.className = "list-group-item d-flex align-items-center";
 
-        const circleSpan = document.createElement("span");
-        circleSpan.style.display = "inline-block";
-        circleSpan.style.width = "10px"; // or the desired diameter of the circle
-        circleSpan.style.height = "10px";
-        circleSpan.style.borderRadius = "50%"; // this makes it a circle
-        circleSpan.style.backgroundColor = newMapping.color;
-        listItem.appendChild(circleSpan);
-
         const mappingText = document.createElement("span");
         mappingText.style.marginLeft = "8px";
         mappingText.className = "flex-grow-1";
         mappingText.textContent = `${newMapping.accountId} -> ${newMapping.accountName}`;
+        mappingText.style.color = newMapping.color;
         listItem.appendChild(mappingText);
 
         const removeButton = document.createElement("button");
         removeButton.title = "Remove";
-        removeButton.className = "close text-danger";
+        removeButton.className = "close";
         removeButton.innerHTML = "&times;";
         removeButton.addEventListener("click", function () {
           currentMappings.splice(currentMappings.indexOf(newMapping), 1);
